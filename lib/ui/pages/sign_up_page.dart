@@ -1,5 +1,7 @@
+import 'package:airplane/ui/widgets/custom_button.dart';
+import 'package:airplane/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
-import '../../shared/theme.dart';
+import 'package:airplane/shared/theme.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -18,150 +20,37 @@ class SignUpPage extends StatelessWidget {
 
     Widget inputSection() {
       Widget fullNameInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Full Name',
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  hintText: 'Your Full Name',
-                  hintStyle: blackTextStyle.copyWith(
-                      fontSize: 16, fontWeight: regular),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-              )
-            ],
-          ),
+        return CustomTextFormField(
+          title: 'Full Name',
+          hintText: 'Your Full Name',
         );
       }
 
       Widget emailInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Email Address',
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  hintStyle: blackTextStyle.copyWith(
-                      fontSize: 16, fontWeight: regular),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-              )
-            ],
-          ),
-        );
+        return CustomTextFormField(
+            title: 'Email Address', hintText: 'Your Email');
       }
 
       Widget passwordInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Password',
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: blackTextStyle.copyWith(
-                      fontSize: 16, fontWeight: regular),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-                obscureText: true,
-              )
-            ],
-          ),
+        return CustomTextFormField(
+          title: 'Password',
+          hintText: 'Your Password',
+          obscureText: true,
         );
       }
 
       Widget hobbyInput() {
-        return Container(
-          margin: EdgeInsets.only(bottom: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Hobby',
-                style:
-                    blackTextStyle.copyWith(fontSize: 14, fontWeight: regular),
-              ),
-              SizedBox(
-                height: 6,
-              ),
-              TextFormField(
-                cursorColor: kPrimaryColor,
-                decoration: InputDecoration(
-                  hintText: 'Your Hobby',
-                  hintStyle: blackTextStyle.copyWith(
-                      fontSize: 16, fontWeight: regular),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius)),
-                  focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(defaultRadius),
-                      borderSide: BorderSide(color: kPrimaryColor)),
-                ),
-              )
-            ],
-          ),
+        return CustomTextFormField(
+          title: 'Hobby',
+          hintText: 'Your Hobby',
+          margin: 30,
         );
       }
 
       Widget submitButton() {
-        return Container(
-          width: double.infinity,
-          height: 55,
-          child: TextButton(
-            style: TextButton.styleFrom(
-                backgroundColor: kPrimaryColor,
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(defaultRadius))),
-            onPressed: (() => {}),
-            child: Text(
-              'Get Started',
-              style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
-            ),
-          ),
-        );
+        return CustomButton(
+            title: 'Get Started',
+            onPressed: () => {Navigator.pushNamed(context, '/bonus')});
       }
 
       return Container(
