@@ -1,13 +1,30 @@
 import 'package:airplane/models/user_model.dart';
 import 'package:airplane/services/auth_service.dart';
 import 'package:airplane/services/user_service.dart';
+import 'package:airplane/shared/error_message.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 part 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(AuthInitial());
+
+  final _message = ErrorMessage();
+
+  void signIn({required String email, required String password}) async {
+    try {
+      emit(AuthLoading());
+
+      UserModel user =
+          await AuthService().signIn(email: email, password: password);
+
+      emit(AuthSuccess(user));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailed(_message.auth(e.message!)));
+    }
+  }
 
   void signUp(
       {required String email,
@@ -21,8 +38,8 @@ class AuthCubit extends Cubit<AuthState> {
           .signUp(name: name, email: email, password: password, hobby: hobby);
 
       emit(AuthSuccess(user));
-    } catch (e) {
-      emit(AuthFailed(e.toString()));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailed(_message.auth(e.message!)));
     }
   }
 
@@ -33,8 +50,8 @@ class AuthCubit extends Cubit<AuthState> {
       await AuthService().signOut();
 
       emit(AuthInitial());
-    } catch (e) {
-      emit(AuthFailed(e.toString()));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailed(e.message!));
     }
   }
 
@@ -43,8 +60,8 @@ class AuthCubit extends Cubit<AuthState> {
       UserModel user = await UserService().getUserById(id);
 
       emit(AuthSuccess(user));
-    } catch (e) {
-      emit(AuthFailed(e.toString()));
+    } on FirebaseAuthException catch (e) {
+      emit(AuthFailed(e.message!));
     }
   }
 }

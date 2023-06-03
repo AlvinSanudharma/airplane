@@ -68,6 +68,7 @@ class SignUpPage extends StatelessWidget {
               Navigator.pushNamedAndRemoveUntil(
                   context, '/bonus', (route) => false);
             } else if (state is AuthFailed) {
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(state.error),
                 backgroundColor: kRedColor,
