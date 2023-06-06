@@ -15,6 +15,5 @@ class UserModel extends Equatable {
       this.balance = 0});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [id, email, name, hobby, balance];
 }
