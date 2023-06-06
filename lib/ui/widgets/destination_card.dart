@@ -1,27 +1,19 @@
+import 'package:airplane/models/destination_model.dart';
 import 'package:airplane/ui/pages/detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:airplane/shared/theme.dart';
 
 class DestinationCard extends StatelessWidget {
-  final String title;
-  final String city;
-  final String imageUrl;
-  final double rating;
+  final DestinationModel destination;
 
-  const DestinationCard(
-      {Key? key,
-      required this.title,
-      required this.city,
-      required this.imageUrl,
-      this.rating = 0.0})
-      : super(key: key);
+  const DestinationCard(this.destination, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (() => {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return DetailPage();
+              return DetailPage(destination);
             }))
           }),
       child: Container(
@@ -39,7 +31,8 @@ class DestinationCard extends StatelessWidget {
               width: 180,
               height: 220,
               decoration: BoxDecoration(
-                  image: DecorationImage(image: AssetImage(imageUrl)),
+                  image: DecorationImage(
+                      image: NetworkImage(destination.imageUrl)),
                   borderRadius: BorderRadius.circular(18)),
               child: Align(
                 alignment: Alignment.topRight,
@@ -63,7 +56,7 @@ class DestinationCard extends StatelessWidget {
                                 image: AssetImage('assets/icon_star.png'))),
                       ),
                       Text(
-                        rating.toString(),
+                        destination.rating.toString(),
                         style: blackTextStyle.copyWith(fontWeight: medium),
                       )
                     ],
@@ -77,13 +70,13 @@ class DestinationCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      title,
+                      destination.name,
                       style: blackTextStyle.copyWith(
                           fontSize: 18, fontWeight: medium),
                     ),
                     SizedBox(height: 5),
                     Text(
-                      city,
+                      destination.city,
                       style: greyTextStyle.copyWith(
                           fontSize: 14, fontWeight: light),
                     ),
