@@ -152,7 +152,7 @@ class CheckoutPage extends StatelessWidget {
             ),
             BookingDetailsItem(
               title: 'Seat',
-              valueText: transaction.selectedSeat,
+              valueText: transaction.selectedSeats,
               valueColor: kBlackColor,
             ),
             BookingDetailsItem(

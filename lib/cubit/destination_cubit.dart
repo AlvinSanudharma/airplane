@@ -17,8 +17,8 @@ class DestinationCubit extends Cubit<DestinationState> {
           await DestinationService().fetchDestinations();
 
       emit(DestinationSuccess(destinations));
-    } on FirebaseAuthMultiFactorException catch (e) {
-      emit(DestinationFailed(e.message!));
+    } catch (e) {
+      emit(DestinationFailed(e.toString()));
     }
   }
 }

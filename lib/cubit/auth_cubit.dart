@@ -50,8 +50,8 @@ class AuthCubit extends Cubit<AuthState> {
       await AuthService().signOut();
 
       emit(AuthInitial());
-    } on FirebaseAuthException catch (e) {
-      emit(AuthFailed(e.message!));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
     }
   }
 
@@ -60,8 +60,8 @@ class AuthCubit extends Cubit<AuthState> {
       UserModel user = await UserService().getUserById(id);
 
       emit(AuthSuccess(user));
-    } on FirebaseAuthException catch (e) {
-      emit(AuthFailed(e.message!));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
     }
   }
 }

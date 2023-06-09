@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class TransactionModel extends Equatable {
   final DestinationModel destination;
   final int amountOfTraveler;
-  final String selectedSeat;
+  final String selectedSeats;
   final bool insurance;
   final bool refundable;
   final double vat;
@@ -14,7 +14,7 @@ class TransactionModel extends Equatable {
   TransactionModel(
       {required this.destination,
       this.amountOfTraveler = 0,
-      this.selectedSeat = '',
+      this.selectedSeats = '',
       this.insurance = false,
       this.refundable = false,
       this.vat = 0,
@@ -25,7 +25,7 @@ class TransactionModel extends Equatable {
   List<Object?> get props => [
         destination,
         amountOfTraveler,
-        selectedSeat,
+        selectedSeats,
         insurance,
         refundable,
         vat,
