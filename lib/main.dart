@@ -9,6 +9,7 @@ import 'package:airplane/ui/pages/main_page.dart';
 import 'package:airplane/ui/pages/sign_in_page.dart';
 import 'package:airplane/ui/pages/sign_up_page.dart';
 import 'package:airplane/ui/pages/splash_page.dart';
+import 'package:airplane/ui/pages/success_checkout_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
           '/sign-up': (context) => SignUpPage(),
           '/sign-in': (context) => SignInPage(),
           '/bonus': (context) => BonusPage(),
-          '/main-page': (context) => MainPage()
+          '/main-page': (context) => MainPage(),
+          '/success': (context) => SuccessCheckoutPage(),
         },
       ),
     );
