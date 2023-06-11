@@ -10,7 +10,7 @@ class TransactionService {
   Future<void> createTransaction(TransactionModel transaction) async {
     try {
       _transactionReference.add({
-        'destination': transaction.destination!.toJson(),
+        'destination': transaction.destination.toJson(),
         'amountOfTraveler': transaction.amountOfTraveler,
         'selectedSeats': transaction.selectedSeats,
         'insurance': transaction.insurance,

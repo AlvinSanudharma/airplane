@@ -87,7 +87,7 @@ class CheckoutPage extends StatelessWidget {
                   margin: EdgeInsets.only(right: 16),
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                        image: NetworkImage(transaction.destination!.imageUrl),
+                        image: NetworkImage(transaction.destination.imageUrl),
                         fit: BoxFit.cover),
                     borderRadius: BorderRadius.circular(18),
                   ),
@@ -97,7 +97,7 @@ class CheckoutPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        transaction.destination!.name,
+                        transaction.destination.name,
                         style: blackTextStyle.copyWith(
                             fontSize: 18, fontWeight: medium),
                       ),
@@ -105,7 +105,7 @@ class CheckoutPage extends StatelessWidget {
                         height: 5,
                       ),
                       Text(
-                        transaction.destination!.city,
+                        transaction.destination.city,
                         style: greyTextStyle.copyWith(fontWeight: light),
                       )
                     ],
@@ -124,7 +124,7 @@ class CheckoutPage extends StatelessWidget {
                               image: AssetImage('assets/icon_star.png'))),
                     ),
                     Text(
-                      transaction.destination!.rating.toString(),
+                      transaction.destination.rating.toString(),
                       style: blackTextStyle.copyWith(fontWeight: medium),
                     )
                   ],
@@ -153,22 +153,22 @@ class CheckoutPage extends StatelessWidget {
             ),
             BookingDetailsItem(
               title: 'Seat',
-              valueText: transaction.selectedSeats!,
+              valueText: transaction.selectedSeats,
               valueColor: kBlackColor,
             ),
             BookingDetailsItem(
               title: 'Insurance',
-              valueText: transaction.insurance! ? 'YES' : 'NO',
-              valueColor: transaction.insurance! ? kGreenColor : kRedColor,
+              valueText: transaction.insurance ? 'YES' : 'NO',
+              valueColor: transaction.insurance ? kGreenColor : kRedColor,
             ),
             BookingDetailsItem(
               title: 'Refundable',
-              valueText: transaction.refundable! ? 'YES' : 'NO',
-              valueColor: transaction.refundable! ? kGreenColor : kRedColor,
+              valueText: transaction.refundable ? 'YES' : 'NO',
+              valueColor: transaction.refundable ? kGreenColor : kRedColor,
             ),
             BookingDetailsItem(
               title: 'VAT',
-              valueText: '${(transaction.vat! * 100).toStringAsFixed(0)}%',
+              valueText: '${(transaction.vat * 100).toStringAsFixed(0)}%',
               valueColor: kBlackColor,
             ),
             BookingDetailsItem(
