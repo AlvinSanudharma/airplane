@@ -77,8 +77,10 @@ class SignUpPage extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is AuthLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return CustomButton(
+                title: 'Get Started',
+                isLoading: true,
+                onPressed: () {},
               );
             }
 

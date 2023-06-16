@@ -291,7 +291,6 @@ class CheckoutPage extends StatelessWidget {
             Navigator.pushNamedAndRemoveUntil(
                 context, '/success', (route) => false);
           } else if (state is TransactionFailed) {
-            ScaffoldMessenger.of(context).hideCurrentSnackBar();
             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               content: Text(state.error),
               backgroundColor: kRedColor,

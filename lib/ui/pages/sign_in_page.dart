@@ -58,8 +58,10 @@ class SignInPage extends StatelessWidget {
           },
           builder: (context, state) {
             if (state is AuthLoading) {
-              return Center(
-                child: CircularProgressIndicator(),
+              return CustomButton(
+                title: 'Sign In',
+                onPressed: () {},
+                isLoading: true,
               );
             }
 

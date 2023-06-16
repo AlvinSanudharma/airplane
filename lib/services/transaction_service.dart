@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:airplane/models/transaction_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class TransactionService {
   CollectionReference _transactionReference =
@@ -11,6 +12,7 @@ class TransactionService {
     try {
       _transactionReference.add({
         'destination': transaction.destination.toJson(),
+        'user': transaction.user.toJson(),
         'amountOfTraveler': transaction.amountOfTraveler,
         'selectedSeats': transaction.selectedSeats,
         'insurance': transaction.insurance,
@@ -23,6 +25,8 @@ class TransactionService {
       throw e;
     }
   }
+
+  // TODO: Fixing bug di halaman transaksi. Hanya tampilkan transaksi yang dimiliki oleh user yang login, jangan tampilkan transaksi yang dimiliki user lain
 
   Future<List<TransactionModel>> fetchTransactions() async {
     try {

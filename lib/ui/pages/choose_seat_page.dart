@@ -1,3 +1,4 @@
+import 'package:airplane/cubit/auth_cubit.dart';
 import 'package:airplane/cubit/seat_cubit.dart';
 import 'package:airplane/models/destination_model.dart';
 import 'package:airplane/models/transaction_model.dart';
@@ -341,25 +342,40 @@ class ChooseSeatPage extends StatelessWidget {
     }
 
     Widget checkoutButton() {
-      return BlocBuilder<SeatCubit, List<String>>(
-        builder: (context, state) {
-          return CustomButton(
-            onPressed: (() {
-              int price = destination.price * state.length;
+      return BlocBuilder<AuthCubit, AuthState>(
+        builder: (contextAuth, stateAuth) {
+          if (stateAuth is AuthSuccess) {
+            return BlocBuilder<SeatCubit, List<String>>(
+              builder: (context, stateSeat) {
+                return CustomButton(
+                  onPressed: (() {
+                    int price = destination.price * stateSeat.length;
 
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: ((context) => CheckoutPage(TransactionModel(
-                          destination: destination,
-                          amountOfTraveler: state.length,
-                          selectedSeats: state.join(', '),
-                          insurance: true,
-                          refundable: false,
-                          vat: 0.45,
-                          price: price,
-                          grandTotal: price + (price * 0.45).toInt())))));
-            }),
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: ((context) => CheckoutPage(
+                                TransactionModel(
+                                    destination: destination,
+                                    user: stateAuth.user,
+                                    amountOfTraveler: stateSeat.length,
+                                    selectedSeats: stateSeat.join(', '),
+                                    insurance: true,
+                                    refundable: false,
+                                    vat: 0.45,
+                                    price: price,
+                                    grandTotal:
+                                        price + (price * 0.45).toInt())))));
+                  }),
+                  title: 'Continue to Checkout',
+                  margin: EdgeInsets.only(top: 30, bottom: 46),
+                );
+              },
+            );
+          }
+
+          return CustomButton(
+            onPressed: (() {}),
             title: 'Continue to Checkout',
             margin: EdgeInsets.only(top: 30, bottom: 46),
           );

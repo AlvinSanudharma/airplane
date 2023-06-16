@@ -111,7 +111,6 @@ class _HomePageState extends State<HomePage> {
     return BlocConsumer<DestinationCubit, DestinationState>(
       listener: (context, state) {
         if (state is DestinationFailed) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(state.error),
             backgroundColor: kRedColor,

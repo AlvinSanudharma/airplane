@@ -6,13 +6,15 @@ class CustomButton extends StatelessWidget {
   final double width;
   final Function() onPressed;
   final EdgeInsets margin;
+  final bool isLoading;
 
   const CustomButton(
       {Key? key,
       required this.title,
       this.width = double.infinity,
       required this.onPressed,
-      this.margin = EdgeInsets.zero})
+      this.margin = EdgeInsets.zero,
+      this.isLoading = false})
       : super(key: key);
 
   @override
@@ -27,10 +29,18 @@ class CustomButton extends StatelessWidget {
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(defaultRadius))),
         onPressed: onPressed,
-        child: Text(
-          title,
-          style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
-        ),
+        child: isLoading
+            ? Transform.scale(
+                scale: 0.5,
+                child: CircularProgressIndicator(
+                  color: kWhiteColor,
+                ),
+              )
+            : Text(
+                title,
+                style:
+                    whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+              ),
       ),
     );
   }
